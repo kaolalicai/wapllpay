@@ -1,0 +1,34 @@
+{
+  "name": "wapllpay",
+  "description": "连连支付 WAP sdk",
+  "main": "index.js",
+  "author": {
+    "name": "navyxie"
+  },
+  "scripts": {
+    "test": "make test"
+  },
+  "license": "ISC",
+  "keywords": [
+    "llpay",
+    "pay",
+    "api",
+    "连连支付",
+    "WAP支付"
+  ],
+  "version": "0.0.1",
+  "repository":{
+    "type": "git",
+    "url": "https://github.com/navyxie/wapllpay.git"
+  },
+  "main": "index.js",
+  "dependencies":{   
+    "utf8": "^2.1.0"
+  },
+  "devDependencies":{
+    "mocha": "*",
+    "should": "*"
+  },
+  "readmeFilename": "README.md",
+  "homepage": "https://github.com/navyxie/wapllpay.git"
+}
