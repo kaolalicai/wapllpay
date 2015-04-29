@@ -30,6 +30,7 @@
 				acct_name:'',//银行账号姓名
 				card_no:"",
 				risk_item:"",//用户注册时间,YYYYMMDDH24MISS,14 位数字,精确到秒
+				no_agree:''//绑定卡支付有就传,体验超赞,需要联系连连技术开通，默认不返回，这个值开通后，会在异步回调那里返回该值
 			}
 			//连连支付api,参数正确会返回表单html
 			var html = initWebllpay.getPrepositPayHtml(testData);
