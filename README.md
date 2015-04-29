@@ -6,13 +6,13 @@
 ---------------------------------------------------
 **注意：目前只接入了wap端的实名认证支付功能，且加密方式为MD5,只实现了支付功能，以后可添加卡查询功能
 ---------------------------------------------------
+`	API: getPrepositPayHtml(obj) //sholud be return formhtml
 
 `	Demo:
 
 		var express = require('express');
 		var app = express();
-		var webllpay = require('webllpay');
-		var payInstance = new yeepay();
+		var webllpay = require('wapllpay');
 		var intiData = {
 			oid_partner:"",//商户ID,连连后台查看
 			key:"",//MD5加密key，连连后台查看
