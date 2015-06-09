@@ -16,19 +16,21 @@
     "连连支付",
     "WAP支付"
   ],
-  "version": "0.0.5",
-  "repository":{
+  "version": "0.1.0",
+  "repository": {
     "type": "git",
     "url": "https://github.com/navyxie/wapllpay.git"
   },
-  "main": "index.js",
-  "dependencies":{   
-    "utf8": "^2.1.0"
+  "dependencies": {
+    "utf8": "^2.1.0",
+    "request":"2.57.0"
   },
-  "devDependencies":{
+  "devDependencies": {
     "mocha": "*",
     "should": "*"
   },
-  "readmeFilename": "README.md",
-  "homepage": "https://github.com/navyxie/wapllpay.git"
+  "homepage": "https://github.com/navyxie/wapllpay.git",
+  "bugs": {
+    "url": "https://github.com/navyxie/wapllpay/issues"
+  }
 }

@@ -4,7 +4,7 @@
 =======
 
 ---------------------------------------------------
-**注意：目前只接入了wap端的实名认证支付功能，且加密方式为MD5,只实现了支付功能，以后可添加卡查询功能
+**注意：目前只接入了wap端的实名认证支付功能，新增RSA加密方式,目前SDK支持RSA以及MD5两种加密方式,新增加订单查询接口
 **若只是接入连连的IOS，Android SDK，也可直接使用本SDK进行数据验证**
 ---------------------------------------------------
 `	API: getPrepositPayHtml(obj) //sholud be return formhtml
@@ -18,9 +18,13 @@
 			oid_partner:"",//商户ID,连连后台查看
 			key:"",//MD5加密key，连连后台查看
 			notify_url:'http://****/webllpay/notify_url',//异步返回地址
-			url_return:'http://****/webllpay/url_return'//同步返回地址
+			url_return:'http://****/webllpay/url_return',//同步返回地址		
+			yt_pub_key:"",//连连公钥
+			trader_pri_key:"",//商户私钥
+			sign_type:"RSA"//签名方式
 		}
 		var initWebllpay = new webllpay(intiData);//实例化
+		//支付demo 
 		app.get('/webllpay',function(req,res){
 			var testData = {
 				user_id:'',//该用户在商户系统中的唯一编号,要求是该编号在商户系统中唯一标识该用户
@@ -123,5 +127,31 @@
 		app.get('/webllpay/url_return',function(req,res){
 			res.send('支付失败了');
 		});
+		//订单查询接口
+		initWebllpay.doQuery({
+			no_order:"商户订单号"
+		},function(err,data){
+			if(!err){
+				//result_pay:SUCCESS, 为支付成功
+				data => {
+					bank_code: '03080000',
+					bank_name: '招商银行',
+					card_no: '621483******9421',
+					dt_order: '20150609175947',
+					info_order: '考拉理财,开启懒人理财生活。',
+					money_order: '1.00',
+					no_order: '5576b9135cf7efc965da0b2b',
+					oid_partner: '2015**************502',
+					oid_paybill: '2015**************368',
+					pay_type: 'D',
+					result_pay: 'SUCCESS',
+					ret_code: '0000',
+					ret_msg: '交易成功',
+					settle_date: '20150609',
+					sign: '79ef7f2422565671398487995660c619',
+					sign_type: 'MD5'
+				}
+			}
+		})
 		app.listen(8007);
 		console.log('app listen on 8007');
