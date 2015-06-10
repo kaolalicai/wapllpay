@@ -151,6 +151,18 @@
 					sign: '79ef7f2422565671398487995660c619',
 					sign_type: 'MD5'
 				}
+				//对订单进行验签
+				//有三个字段不参与验证bank_name,memo,card_no
+				delete data.bank_name;
+				delete data.memo;
+				delete data.card_no;
+				if(self.verify(data)){
+					//数据合法
+					//todo
+				}else{
+					//数据被篡改
+					//todo
+				}
 			}
 		})
 		app.listen(8007);
