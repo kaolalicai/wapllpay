@@ -41,7 +41,7 @@ describe('#intiPay.getPrepositPayHtml()',function(){
 			card_no:"6227***********",
 			risk_item:"20150428094501",//用户注册时间,YYYYMMDDH24MISS,14 位数字,精确到秒
 		})
-		resultHtml.indexOf('正在进入连连安全支付...').should.not.equal(-1);
+		resultHtml.indexOf('<form ').should.not.equal(-1);
 	});
 });
 describe('#doQuery()',function(){
