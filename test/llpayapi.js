@@ -58,7 +58,7 @@ describe('#doQuery()',function(){
 					// console.log(body);
 					//地址必须是"https://yintong.com.cn/traderapi/orderquery.htm"
 					it('url should ok',function(){
-						json.url.should.be.equal("https://yintong.com.cn/traderapi/orderquery.htm");				
+						json.url.should.be.equal("https://queryapi.lianlianpay.com/orderquery.htm");				
 					});
 					it('sign_type should ok',function(){
 						body.sign_type.should.be.equal('RSA');

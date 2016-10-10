@@ -1,7 +1,7 @@
 TESTS = $(shell find test -type f -name "*.js")
 
 test:
-	./node_modules/.bin/mocha \
+	npm i && ./node_modules/.bin/mocha \
 		$(TESTS)
 
 
