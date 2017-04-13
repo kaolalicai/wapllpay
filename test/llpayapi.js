@@ -53,7 +53,7 @@ describe('#doQuery()',function(){
 		});
 		before(function(){
 			muk(request,'post',function(json, callback){
-				describe('#json.url should be "https://yintong.com.cn/traderapi/orderquery.htm"#',function(){
+				describe('#json.url should be "https://queryapi.lianlianpay.com/orderquery.htm"#',function(){
 					var body = JSON.parse(json.body);
 					// console.log(body);
 					//地址必须是"https://yintong.com.cn/traderapi/orderquery.htm"
