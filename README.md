@@ -20,6 +20,8 @@
 
 [doQuery](#doQuery)
 
+[getBankPayHtml](#getBankPayHtml)
+
 <a name="getPrepositPayHtml" />
 
 创建订单，异步回调数据解析以及同步回调数据解析
@@ -286,9 +288,35 @@ initWebllpay.doQuery({
 })
 ```
 
+<a name="getBankPayHtml" />
+
+连连PC支付
+
+```		
+initWebllpay.getBankPayHtml({
+	user_id:'54cef05579337f164b365050',//该用户在商户系统中的唯一编号,要求是该编号在商户系统中唯一标识该用户
+	no_order:'5518d825d5cdc86106eeeee',//商户系统唯一订单号
+	dt_order:'20150428163735',//商户订单时间,格式:YYYYMMDDH24MISS,14 位数字,精确到秒
+	timestamp: '20150428163735',
+	money_order:'0.01',//交易金额,该笔订单的资金总额,单位为 RMB-元。号交易金额大于 0 的数字,精确到小数点后两位。如:49.65
+	id_no:'440882************',//证件号码,身份证,18位
+	acct_name:'谢**',//银行账号姓名
+	card_no:"6227***********",
+	bank_code: "01050000",
+	risk_item:"20150428094501",//用户注册时间,YYYYMMDDH24MISS,14 位数字,精确到秒
+},function(err,resultHtml){
+	// todo 
+	// resultHtml 为跳转的html
+})
+```
+
 启动app
 
 ```js
 app.listen(8007);
 console.log('app listen on 8007');
 ```
+
+## 发布logs
+
+- 1.0.0 版本添加PC支付接口: getBankPayHtml

@@ -44,6 +44,57 @@ describe('#intiPay.getPrepositPayHtml()',function(){
 		resultHtml.indexOf('<form ').should.not.equal(-1);
 	});
 });
+
+describe('#intiPay.getBankPayHtml()',function(){
+  var intiPay = new webllpay({
+    notify_url:'http://192.168.1.120:8008/webllpay/notify_url',
+    url_return:'http://192.168.1.120:8008/webllpay/url_return'
+  });
+
+  it('should return <div style=\'width:100%;color:red;text-align:center;padding-top:20px;\'>缺少风险参数:risk_item</div>',function(){
+    intiPay.getBankPayHtml({
+      user_id:'54cef05579337f164b365050',//该用户在商户系统中的唯一编号,要求是该编号在商户系统中唯一标识该用户
+      no_order:'5518d825d5cdc86106eeeee',//商户系统唯一订单号
+      dt_order:'20150428163735',//商户订单时间,格式:YYYYMMDDH24MISS,14 位数字,精确到秒
+    }).should.equal("<div style='width:100%;color:red;text-align:center;padding-top:20px;'>缺少风险参数:risk_item</div>");
+  });
+
+  it('should return <div style=\'width:100%;color:red;text-align:center;padding-top:20px;\'>风险参数,用户注册时间:user_info_dt_register 必须是 14 位数字</div>',function(){
+    intiPay.getBankPayHtml({
+      user_id:'54cef05579337f164b365050',//该用户在商户系统中的唯一编号,要求是该编号在商户系统中唯一标识该用户
+      no_order:'5518d825d5cdc86106eeeee',//商户系统唯一订单号
+      dt_order:'201504281635',//商户订单时间,格式:YYYYMMDDH24MISS,14 位数字,精确到秒
+      risk_item:'20150428163735'
+    }).should.equal("<div style='width:100%;color:red;text-align:center;padding-top:20px;'>风险参数,用户注册时间:user_info_dt_register 必须是 14 位数字</div>");
+  });
+
+  it('should return <div style=\'width:100%;color:red;text-align:center;padding-top:20px;\'>参数错误，请检查！</div>',function(){
+    intiPay.getBankPayHtml({
+      // user_id:'54cef05579337f164b365050',//该用户在商户系统中的唯一编号,要求是该编号在商户系统中唯一标识该用户
+      no_order:'5518d825d5cdc86106eeeee',//商户系统唯一订单号
+      dt_order:'20150428163735',//商户订单时间,格式:YYYYMMDDH24MISS,14 位数字,精确到秒
+      risk_item:'20150428163735'
+    }).should.equal("<div style='width:100%;color:red;text-align:center;padding-top:20px;'>参数错误，请检查！</div>");
+  });
+
+  it('should return form html',function(){
+    var resultHtml = intiPay.getBankPayHtml({
+      user_id:'54cef05579337f164b365050',//该用户在商户系统中的唯一编号,要求是该编号在商户系统中唯一标识该用户
+      no_order:'5518d825d5cdc86106eeeee',//商户系统唯一订单号
+      dt_order:'20150428163735',//商户订单时间,格式:YYYYMMDDH24MISS,14 位数字,精确到秒
+      timestamp: '20150428163735',
+      money_order:'0.01',//交易金额,该笔订单的资金总额,单位为 RMB-元。号交易金额大于 0 的数字,精确到小数点后两位。如:49.65
+      id_no:'440882************',//证件号码,身份证,18位
+      acct_name:'谢**',//银行账号姓名
+      card_no:"6227***********",
+      bank_code: "01050000",
+      risk_item:"20150428094501",//用户注册时间,YYYYMMDDH24MISS,14 位数字,精确到秒
+    })
+    console.log(resultHtml);
+    resultHtml.indexOf('<form ').should.not.equal(-1);
+  });
+});
+
 describe('#doQuery()',function(){
 	describe('should ok',function(){
 		var intiPay = new webllpay({
